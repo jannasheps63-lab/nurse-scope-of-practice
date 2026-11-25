@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#152b48">
+  <meta name="theme-color" content="#173d34">
   <title>סמכויות בסיעוד</title>
   <link rel="stylesheet" href="styles.css">
   <script type="module" src="app.mjs"></script>
@@ -13,7 +13,7 @@
   <header class="site-header">
     <div class="wrap top">
       <a class="brand" href="./"><span class="mark" aria-hidden="true">+</span> סמכויות בסיעוד</a>
-      <button type="button" class="outline profile-button" data-profile>הפרופיל שלי</button>
+      <button type="button" class="outline profile-button" data-profile><span class="person-icon" aria-hidden="true"></span>הפרופיל שלי</button>
     </div>
   </header>
   <main class="wrap">
@@ -23,11 +23,18 @@
         <h1 id="title">סמכויות בסיעוד</h1>
         <p class="intro">בדקי אילו פעולות מתאימות להכשרה ולמחלקה שלך, ומה נדרש לפני הביצוע.</p>
         <nav class="actions" aria-label="מסלולי שימוש">
-          <button type="button" id="my-mode" aria-pressed="false">הסמכויות שלי <span aria-hidden="true">←</span></button>
-          <button type="button" id="search-mode" aria-pressed="true">חיפוש פעולה <span aria-hidden="true">⌕</span></button>
+          <button type="button" id="search-mode" aria-pressed="true"><span class="search-icon" aria-hidden="true"></span>חיפוש פעולה</button>
+          <button type="button" id="my-mode" aria-pressed="false"><span class="person-icon" aria-hidden="true"></span>הסמכויות שלי</button>
         </nav>
       </div>
-      <div class="hero-art" aria-hidden="true"><span>+</span><i></i><b></b></div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="folio folio-back"></div>
+        <div class="folio folio-front">
+          <span class="folio-cross"></span>
+          <span class="folio-rules"></span>
+          <span class="folio-seal">+</span>
+        </div>
+      </div>
     </section>
 
     <section id="catalog" tabindex="-1" aria-labelledby="catalog-title">
@@ -36,12 +43,12 @@
           <h2 id="catalog-title">מאגר הפעולות</h2>
           <p id="profile-summary"></p>
         </div>
-        <a href="https://www.gov.il/he/pages/nd263-2026" target="_blank" rel="noopener">לחוזר משרד הבריאות ↗</a>
+        <a href="https://www.gov.il/he/pages/nd263-2026" target="_blank" rel="noopener">לחוזר משרד הבריאות</a>
       </div>
       <p class="catalog-note">גרסת הדגמה · מבחר פעולות מחוזרי מינהל האחיות</p>
       <div class="filters">
         <label class="search">חיפוש לפי שם, מילה או קיצור
-          <input id="query" type="search" placeholder="למשל: קנולה, צנתר, NIHSS">
+          <span class="search-field"><span class="search-icon" aria-hidden="true"></span><input id="query" type="search" placeholder="למשל: קנולה, צנתר, NIHSS"></span>
         </label>
         <div class="filter-row">
           <label>סוג פעולה <select id="type"><option value="">כל הסוגים</option><option value="nursing">פעולת סיעוד</option><option value="exceptional">פעולה חריגה</option></select></label>
@@ -58,8 +65,8 @@
     </section>
   </main>
   <footer class="wrap footer">
-    <p>גרסת הדגמה לאפיון · המאגר מציג מבחר מתוך חוזרי מינהל האחיות.</p>
-    <a href="https://www1.health.gov.il/nursing/work/toolkits/nursing-procedures/" target="_blank" rel="noopener">פעולות סיעוד ופעולות חריגות באתר משרד הבריאות ↗</a>
+    <span class="footer-brand">סמכויות בסיעוד</span>
+    <a href="https://www1.health.gov.il/nursing/work/toolkits/nursing-procedures/" target="_blank" rel="noopener">פעולות סיעוד ופעולות חריגות באתר משרד הבריאות</a>
   </footer>
 
   <dialog id="profile-dialog" aria-labelledby="profile-title">
