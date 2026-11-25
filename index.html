@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#152b48">
+  <title>סמכויות בסיעוד</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.mjs"></script>
+</head>
+<body>
+  <a class="skip" href="#catalog">דילוג למאגר הפעולות</a>
+  <header class="site-header">
+    <div class="wrap top">
+      <a class="brand" href="./"><span class="mark" aria-hidden="true">+</span> סמכויות בסיעוד</a>
+      <button type="button" class="outline profile-button" data-profile>הפרופיל שלי</button>
+    </div>
+  </header>
+  <main class="wrap">
+    <section class="hero" aria-labelledby="title">
+      <div class="hero-content">
+        <p class="eyebrow">מינהל האחיות · חוזר <bdi>263/2026</bdi></p>
+        <h1 id="title">סמכויות בסיעוד</h1>
+        <p class="intro">בדקי אילו פעולות מתאימות להכשרה ולמחלקה שלך, ומה נדרש לפני הביצוע.</p>
+        <nav class="actions" aria-label="מסלולי שימוש">
+          <button type="button" id="my-mode" aria-pressed="false">הסמכויות שלי <span aria-hidden="true">←</span></button>
+          <button type="button" id="search-mode" aria-pressed="true">חיפוש פעולה <span aria-hidden="true">⌕</span></button>
+        </nav>
+      </div>
+      <div class="hero-art" aria-hidden="true"><span>+</span><i></i><b></b></div>
+    </section>
+
+    <section id="catalog" tabindex="-1" aria-labelledby="catalog-title">
+      <div class="section-heading">
+        <div>
+          <h2 id="catalog-title">מאגר הפעולות</h2>
+          <p id="profile-summary"></p>
+        </div>
+        <a href="https://www.gov.il/he/pages/nd263-2026" target="_blank" rel="noopener">לחוזר משרד הבריאות ↗</a>
+      </div>
+      <p class="catalog-note">גרסת הדגמה · מבחר פעולות מחוזרי מינהל האחיות</p>
+      <div class="filters">
+        <label class="search">חיפוש לפי שם, מילה או קיצור
+          <input id="query" type="search" placeholder="למשל: קנולה, צנתר, NIHSS">
+        </label>
+        <div class="filter-row">
+          <label>סוג פעולה <select id="type"><option value="">כל הסוגים</option><option value="nursing">פעולת סיעוד</option><option value="exceptional">פעולה חריגה</option></select></label>
+          <label>מחלקה <select id="department-filter"><option value="">כל המחלקות</option></select></label>
+          <label>הכשרה <select id="training-filter"><option value="">כל ההכשרות</option></select></label>
+        </div>
+      </div>
+      <div id="topics" class="topics" role="group" aria-label="דפדוף לפי נושא"></div>
+      <div class="results-heading">
+        <p id="count" role="status"></p>
+        <button type="button" id="reset" class="text-button" hidden>ניקוי סינון</button>
+      </div>
+      <div id="results" class="results"></div>
+    </section>
+  </main>
+  <footer class="wrap footer">
+    <p>גרסת הדגמה לאפיון · המאגר מציג מבחר מתוך חוזרי מינהל האחיות.</p>
+    <a href="https://www1.health.gov.il/nursing/work/toolkits/nursing-procedures/" target="_blank" rel="noopener">פעולות סיעוד ופעולות חריגות באתר משרד הבריאות ↗</a>
+  </footer>
+
+  <dialog id="profile-dialog" aria-labelledby="profile-title">
+    <form id="profile-form">
+      <div class="dialog-head"><h2 id="profile-title">הפרופיל שלי</h2><button type="button" class="close" data-close aria-label="סגירה">×</button></div>
+      <p>בחרי את המחלקה ואת ההכשרות שלך. הפרופיל נשמר בדפדפן הזה.</p>
+      <label>מחלקת עבודה
+        <select id="profile-department" required><option value="">בחרי מחלקה</option></select>
+      </label>
+      <fieldset><legend>הכשרות</legend>
+        <p>אחות מוסמכת היא הכשרת הבסיס. אפשר לבחור כמה הכשרות.</p>
+        <div id="profile-trainings" class="check-list"></div>
+      </fieldset>
+      <label for="custom-training">הוספת הכשרה אישית</label>
+      <div class="add-row"><input id="custom-training" maxlength="100" placeholder="שם ההכשרה"><button type="button" class="outline" id="add-training">הוספה</button></div>
+      <p id="custom-note" class="muted">הכשרה אישית תישמר בפרופיל. התאמה לסמכויות זמינה להכשרות שקושרו לחוזרים במאגר.</p>
+      <ul id="custom-list" class="custom-list"></ul>
+      <p id="profile-error" role="alert" hidden></p>
+      <div class="dialog-actions"><button class="primary">שמירת פרופיל</button><button type="button" data-close class="outline">ביטול</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="detail-dialog" aria-labelledby="detail-title">
+    <article id="detail"></article>
+  </dialog>
+  <template id="card-template">
+    <article class="card">
+      <div class="card-top"><span class="category-mark" aria-hidden="true"></span><span class="type"></span></div>
+      <h3></h3>
+      <p class="summary"></p>
+      <div class="card-meta"></div>
+      <button type="button" class="card-link">לפרטי הפעולה <span aria-hidden="true">←</span></button>
+    </article>
+  </template>
+</body>
+</html>
